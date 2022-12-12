@@ -8,13 +8,13 @@ routes = web.RouteTableDef()
 async def get_activity(request):
     try:
         data =  await request.json()
-        data = data["results"]
-        
-        joke_data = []
-        joke_data.append({
-            **data[0]["setup"],
-            **data[0]["punchline"]
-        })
+        data = data[0]
+
+        # joke_data = []
+        # joke_data.append({
+        #     **data[0]["setup"],
+        #     **data[0]["punchline"]
+        # })
         
         # async with aiohttp.ClientSession() as session:
         #     tasks = []
@@ -24,7 +24,7 @@ async def get_activity(request):
         #     )))
 
 
-        res = joke_data
+        res = data
 
         return web.json_response({ "res": res }, status = 200)
 

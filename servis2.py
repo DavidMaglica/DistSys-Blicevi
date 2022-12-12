@@ -8,15 +8,17 @@ routes = web.RouteTableDef()
 async def get_activity(request):
     try:
         data = await request.json()
-        data = data["results"]
+        data = data[0]
+
+        user_data.get("name")
 
 
-        user_data = data
-        user_data.append({
-            **data["name"],
-            **data["location"]["city"],
-            **data["login"]["username"]
-        })
+        # user_data = data
+        # user_data.append({
+        #     **data["name"],
+        #     **data["location"]["city"],
+        #     **data["login"]["username"]
+        # })
 
         # async with aiohttp.ClientSession() as session:
         #     tasks = []
@@ -25,7 +27,7 @@ async def get_activity(request):
         #         json = user_data
         #     )))
 
-        return web.json_response({ "res": user_data }, status = 200)
+        return web.json_response({ "res": data }, status = 200)
 
 
     except Exception as e:
